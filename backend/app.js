@@ -2,14 +2,17 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const bookRoutes = require("./routes/book");
 const userRoutes = require("./routes/user");
+const bodyParser = require("body-parser");
 
 const app = express();
+app.use(bodyParser.json());
 mongoose
   .connect(
-    "mongodb+srv://clementoss:T6yeefjbw!@cluster0.7mhz3ve.mongodb.net/?retryWrites=true&w=majority",
+    "mongodb+srv://clementoss:xgQm&7e3tRrbE9Jj@cluster0.7mhz3ve.mongodb.net/?retryWrites=true&w=majority",
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("Connexion à MongoDB réussie !"))
@@ -27,6 +30,11 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+app.use("/api/books", bookRoutes);
+app.use("/api/auth", userRoutes);
+
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 // app.use("/api/books", (req, res, next) => {
 //   const books = [
@@ -65,8 +73,5 @@ app.use((req, res, next) => {
 //   ];
 //   res.status(200).json(books);
 // });
-
-app.use("/api/books", bookRoutes);
-app.use("/api/auth", userRoutes);
 
 module.exports = app;
