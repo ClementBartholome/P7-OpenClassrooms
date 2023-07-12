@@ -8,11 +8,13 @@ const bookRoutes = require("./routes/book");
 const userRoutes = require("./routes/user");
 const bodyParser = require("body-parser");
 
+require("dotenv").config();
+
 const app = express();
 app.use(bodyParser.json());
 mongoose
   .connect(
-    "mongodb+srv://clementoss:xgQm&7e3tRrbE9Jj@cluster0.7mhz3ve.mongodb.net/?retryWrites=true&w=majority",
+    `mongodb+srv://clementoss:${process.env.DB_PASSWORD}@cluster0.7mhz3ve.mongodb.net/?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("Connexion à MongoDB réussie !"))
