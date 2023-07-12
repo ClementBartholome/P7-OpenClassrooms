@@ -38,42 +38,4 @@ app.use("/api/auth", userRoutes);
 
 app.use("/images", express.static(path.join(__dirname, "images")));
 
-// app.use("/api/books", (req, res, next) => {
-//   const books = [
-//     {
-//       userId: "oeihfzeoi",
-//       title: "La Lumière des Jedi",
-//       author: "Charles Soule",
-//       imageUrl:
-//         "https://cdn1.booknode.com/book_cover/1444/star_wars_la_haute_republique_la_lumiere_des_jedi_tome_1-1444430-264-432.jpg",
-//       year: 2020,
-//       genre: "Science-fiction",
-//       ratings: [
-//         {
-//           userId: "qsomihvqios",
-//           grade: 5,
-//         },
-//       ],
-//       averageRating: 5,
-//     },
-//     {
-//       userId: "oeihfzeoi",
-//       title: "En pleine ténèbres",
-//       author: "Claudia Grey",
-//       imageUrl:
-//         "https://cdn1.booknode.com/book_cover/1457/star_wars_la_haute_republique_en_pleines_tenebres_tome_1-1456671-264-432.jpg",
-//       year: 2021,
-//       genre: "Science-fiction",
-//       ratings: [
-//         {
-//           userId: "qsomihvqios",
-//           grade: 4,
-//         },
-//       ],
-//       averageRating: 4,
-//     },
-//   ];
-//   res.status(200).json(books);
-// });
-
 module.exports = app;
