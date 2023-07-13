@@ -31,8 +31,8 @@ exports.createBook = (req, res, next) => {
     ...bookObject,
     userId: req.auth.userId,
     imageUrl: `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
-    }`,
+      req.file.filename.split(".")[0]
+    }.webp`,
     averageRating: bookObject.ratings[0].grade,
   });
   book
@@ -51,8 +51,8 @@ exports.updateBook = (req, res, next) => {
         // If a file is uploaded, construct the book object with the new image URL
         ...JSON.parse(req.body.book),
         imageUrl: `${req.protocol}://${req.get("host")}/images/${
-          req.file.filename
-        }`,
+          req.file.filename.split(".")[0]
+        }.webp`,
       }
     : { ...req.body }; // Otherwise, use the existing book object from the request body
   delete bookObject._userId; // Remove the _userId property from the book object
