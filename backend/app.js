@@ -11,7 +11,7 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
 mongoose
   .connect(
     `mongodb+srv://clementoss:${process.env.DB_PASSWORD}@cluster0.7mhz3ve.mongodb.net/?retryWrites=true&w=majority`,
