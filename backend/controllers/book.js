@@ -38,7 +38,7 @@ exports.createBook = (req, res, next) => {
   book
     .save()
     .then(() => {
-      res.status(201).json({ message: "Livre enregistré!" });
+      res.status(201).json({ message: "Livre enregistré !" });
     })
     .catch((error) => {
       res.status(400).json({ error });
@@ -60,7 +60,7 @@ exports.updateBook = (req, res, next) => {
   Book.findOne({ _id: req.params.id })
     .then((book) => {
       if (book.userId != req.auth.userId) {
-        res.status(403).json({ message: "403: unauthorized request" });
+        res.status(403).json({ message: "403: requête non autorisée" });
       } else if (req.file) {
         // If a new file is uploaded, delete the old image file
         const filename = book.imageUrl.split("/images")[1];
@@ -70,7 +70,7 @@ exports.updateBook = (req, res, next) => {
         { _id: req.params.id }, // Update the book matching the ID
         { ...bookObject, _id: req.params.id } // Update with the new book object
       )
-        .then(res.status(200).json({ message: "Livre modifié! " }))
+        .then(res.status(200).json({ message: "Livre modifié ! " }))
         .catch((error) => res.status(400).json({ error }));
     })
     .catch((error) => res.status(400).json({ error }));
@@ -80,14 +80,14 @@ exports.deleteBook = (req, res, next) => {
   Book.findOne({ _id: req.params.id })
     .then((book) => {
       if (book.userId != req.auth.userId) {
-        res.status(401).json({ message: "Not authorized" });
+        res.status(401).json({ message: "Non autorisé" });
       } else {
         const filename = book.imageUrl.split("/images/")[1]; // Extract the filename from the book's image URL
         fs.unlink(`images/${filename}`, () => {
           // Delete the corresponding image file from the filesystem
           Book.deleteOne({ _id: req.params.id }) // Delete the book from the database
             .then(() => {
-              res.status(200).json({ message: "Livre supprimé!" });
+              res.status(200).json({ message: "Livre supprimé !" });
             })
             .catch((error) => res.status(401).json({ error }));
         });
