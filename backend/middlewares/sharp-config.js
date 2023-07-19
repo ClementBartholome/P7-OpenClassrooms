@@ -10,7 +10,7 @@ const sharpConfig = async (req, res, next) => {
   const fileName = req.file.filename.split(".")[0];
   try {
     await sharp(req.file.path)
-      .resize({ width: 404, height: 567, fit: sharp.fit.inside })
+      .resize({ width: 400, height: 500, fit: sharp.fit.inside })
       .webp()
       .toFormat("webp")
       .toFile(`${req.file.destination}/${fileName}.webp`);
