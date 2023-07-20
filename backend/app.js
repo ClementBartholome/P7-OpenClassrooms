@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 mongoose
   .connect(
-    `mongodb+srv://clementoss:${process.env.DB_PASSWORD}@cluster0.7mhz3ve.mongodb.net/?retryWrites=true&w=majority`,
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}.mongodb.net/?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("Connexion à MongoDB réussie !"))
