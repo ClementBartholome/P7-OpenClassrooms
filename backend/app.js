@@ -3,6 +3,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
+const helmet = require("helmet");
 
 const bookRoutes = require("./routes/book");
 const userRoutes = require("./routes/user");
@@ -10,6 +11,15 @@ const userRoutes = require("./routes/user");
 require("dotenv").config();
 
 const app = express();
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      imgSrc: ["'self'"], // Allow loading images from 'self'
+    },
+  })
+);
+
 app.use(express.json());
 mongoose
   .connect(
