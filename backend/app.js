@@ -6,7 +6,6 @@ const path = require("path");
 
 const bookRoutes = require("./routes/book");
 const userRoutes = require("./routes/user");
-const bodyParser = require("body-parser");
 
 require("dotenv").config();
 
