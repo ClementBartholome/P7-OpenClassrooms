@@ -4,7 +4,6 @@ const passwordValidator = require("password-validator");
 
 const passwordSchema = new passwordValidator();
 
-// Ajoutez les règles de validation standard
 passwordSchema
   .is()
   .min(8)
