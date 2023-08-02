@@ -2,7 +2,11 @@
 
 ## Liens
 
-Démo du site à venir
+[Démo](https://p7-oc-clement-bartholome.netlify.app/)
+
+## Screenshot 
+
+![Screenshot](https://storage.googleapis.com/github-clementbartholome/project_grimoire.png)
 
 ## Missions
 
