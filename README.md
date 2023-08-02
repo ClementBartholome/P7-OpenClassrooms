@@ -4,6 +4,10 @@
 
 [Démo](https://p7-oc-clement-bartholome.netlify.app/)
 
+## Screenshot 
+
+![Screenshot](https://storage.googleapis.com/github-clementbartholome/project_grimoire.png)
+
 ## Missions
 
 Développer from scratch le backend du site avec MongoDB, Express et Node.js
