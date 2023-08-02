@@ -2,7 +2,7 @@
 
 ## Liens
 
-Démo du site à venir
+[Démo](https://p7-oc-clement-bartholome.netlify.app/)
 
 ## Missions
 
