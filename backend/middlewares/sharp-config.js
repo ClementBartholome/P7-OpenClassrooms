@@ -7,28 +7,32 @@ const sharpConfig = async (req, res, next) => {
   if (!req.file) {
     return next();
   }
+
   const fileName = req.file.filename.split(".")[0];
+  const newPath = `${req.file.destination}/${fileName}.webp`;
+
   try {
     await sharp(req.file.path)
       .resize({ width: 400, height: 500, fit: sharp.fit.inside })
       .webp()
-      .toFormat("webp")
-      .toFile(`${req.file.destination}/${fileName}.webp`);
+      .toFile(newPath);
 
-    // Delete the original image
+  
     fs.unlink(req.file.path, (err) => {
       if (err) {
-        console.error(
-          "Erreur lors de la suppression de l'image d'origine :",
-          err
-        );
+        console.error("Error deleting the original image:", err);
       }
     });
 
+   
+    req.file.path = newPath;
+    req.file.filename = `${fileName}.webp`;
+
     next();
   } catch (error) {
-    res.status(500).json({ error: "Impossible d'optimiser l'image" });
+    res.status(500).json({ error: "Failed to optimize the image" });
   }
 };
 
 module.exports = sharpConfig;
+
