@@ -16,7 +16,11 @@ const sharpConfig = async (req, res, next) => {
 
   try {
     await sharp(req.file.path)
-      .resize({ width: 400, height: 500, fit: sharp.fit.inside }) // Resize the image while maintaining aspect ratio
+      .resize({
+        fit: sharp.fit.contain,
+        width: 400,
+        height: 500,
+      }) // Resize the image while maintaining aspect ratio
       .webp() // Convert the image to WebP format
       .toFile(newPath); // Save the optimized image to the new path
 
