@@ -8,10 +8,11 @@ const helmet = require("helmet");
 const bookRoutes = require("./routes/book");
 const userRoutes = require("./routes/user");
 
-require("dotenv").config();
+require("dotenv").config(); // Load environment variables from .env file
 
-const app = express();
+const app = express(); // Create an express app
 
+// Apply content security policies using helmet middleware
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
@@ -20,9 +21,11 @@ app.use(
   })
 );
 
-app.use(express.json());
+app.use(express.json()); // Parse JSON request bodies
+
 mongoose
   .connect(
+    // Connect to MongoDB using environment variables
     `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}.mongodb.net/?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
@@ -30,7 +33,8 @@ mongoose
   .catch(() => console.log("Connexion à MongoDB échouée !"));
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  // Set CORS headers to allow cross-origin requests
+  res.setHeader("Access-Control-Allow-Origin", "*"); // Allow any origin
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
@@ -42,10 +46,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/books", bookRoutes);
-app.use("/api/auth", userRoutes);
+app.use("/api/books", bookRoutes); // Use book routes for /api/books endpoint
+app.use("/api/auth", userRoutes); // Use user routes for /api/auth endpoint
 
-// Tells express to handle the images ressource statically (a sub-directory of our root directory, __dirname) whenever it gets a request to the /images route
+// Serve images statically from the /images route
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 module.exports = app;
