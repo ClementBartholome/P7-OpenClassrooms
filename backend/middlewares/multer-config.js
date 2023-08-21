@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 const multer = require("multer");
 
 const MIME_TYPES = {
@@ -10,12 +11,12 @@ const MIME_TYPES = {
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, "images");
+    callback(null, "images"); // Set the destination directory for uploaded files
   },
   filename: (req, file, callback) => {
-    const name = file.originalname.split(" ").join("_");
-    const extension = MIME_TYPES[file.mimetype];
-    callback(null, name + "_" + Date.now() + "." + extension);
+    const name = file.originalname.split(" ").join("_"); // Replace spaces in the filename with underscores
+    const extension = MIME_TYPES[file.mimetype]; // Get the file extension from the mime types
+    callback(null, name + "_" + Date.now() + "." + extension); // Construct the final filename
   },
 });
 
