@@ -1,9 +1,5 @@
 # Mon Vieux Grimoire - Site de notation de livres 
 
-## Liens
-
-[Démo](https://p7-oc-clement-bartholome.netlify.app/)
-
 ## Screenshot 
 
 ![Screenshot](https://storage.googleapis.com/github-clementbartholome/project_grimoire.png)
