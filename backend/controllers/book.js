@@ -33,7 +33,7 @@ exports.createBook = (req, res, next) => {
   const book = new Book({
     ...bookObject,
     userId: req.auth.userId, // Set the userId from authentication
-    imageUrl: `https://github.com/ClementBartholome/P7-OpenClassrooms/tree/deploy/backend/images/${
+    imageUrl: `http://vieux-grimoire-back.onrender.com/images/images/${
       req.file.filename.split(".")[0]
     }.webp`, // Construct the image URL
     averageRating: bookObject.ratings[0].grade, // Set initial averageRating
